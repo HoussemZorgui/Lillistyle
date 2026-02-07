@@ -115,7 +115,7 @@ export default function Header() {
 
                 {/* Center: Logo */}
                 <Link href="/" className={styles.logo}>
-                    <img src="/uploads/logo-manel.png" alt="Lillistyle" style={{ height: '90px' }} />
+                    <img src="/uploads/logo-manel.png" alt="Lillistyle" />
                 </Link>
 
                 {/* Right: Actions */}

@@ -35,8 +35,14 @@
 
   --container-width: 1440px;
   /* Wider for luxury feel */
-  --nav-height: 80px;
+  --nav-height: 120px;
   /* Slimmer header */
+}
+
+.logo img {
+  height: 80px !important;
+  /* Larger, elegant logo */
+  object-fit: contain;
 }
 
 * {
