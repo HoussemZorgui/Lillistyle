@@ -20,6 +20,12 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
+    // Preload images
+    HERO_IMAGES.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
     fetch('/api/categories')
       .then(res => res.json())
       .then(data => setCategories(data.slice(0, 3)));
@@ -36,14 +42,14 @@ export default function Home() {
     <div className={styles.main}>
       {/* Hero Section */}
       <section className={styles.hero}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.div
             key={currentSlide}
             className={styles.heroBackground}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
             style={{ backgroundImage: `url(${HERO_IMAGES[currentSlide]})` }}
           />
         </AnimatePresence>
