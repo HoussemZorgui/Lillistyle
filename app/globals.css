@@ -1,0 +1,192 @@
+:root {
+  /* Gucci / Luxury Palette */
+  --primary: #000000;
+  --primary-hover: #333333;
+  --secondary: #FFFFFF;
+  --accent: #D4AF37;
+  /* Subtle gold for highlights only */
+
+  --background: #FFFFFF;
+  --surface: #F9F9F9;
+
+  --text-main: #000000;
+  --text-muted: #555555;
+  --text-light: #888888;
+
+  --border: #E0E0E0;
+  --error: #D32F2F;
+  --success: #388E3C;
+
+  /* Typography */
+  --font-heading: var(--font-playfair), serif;
+  --font-body: var(--font-lato), sans-serif;
+
+  /* Luxury = Sharp & Minimal */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-full: 0px;
+  /* Or keep 9999px for specific badges only */
+
+  --shadow-sm: none;
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.04);
+  /* Very subtle */
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --container-width: 1440px;
+  /* Wider for luxury feel */
+  --nav-height: 80px;
+  /* Slimmer header */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  font-weight: 300;
+  /* Lighter weight for elegance */
+  letter-spacing: 0.02em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  /* Regular weight is more elegant than bold */
+  margin: 0 0 1.5rem 0;
+  color: var(--text-main);
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+/* Utilities */
+/* Utilities */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 0;
+  /* Sharp corners */
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--primary);
+  transform: none;
+  /* No movement, just color swap */
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .grid-products {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-products {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  /* No default shadow for luxury flat look */
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  z-index: 10;
+  /* transform: none; No lift */
+}

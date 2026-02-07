@@ -1,0 +1,162 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  password      String
+  firstName     String?
+  lastName      String?
+  phone         String?
+  role          String    @default("USER") // USER, ADMIN
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orders        Order[]
+  reviews       Review[]
+  wishlistItems WishlistItem[]
+  addresses     Address[] @relation("UserAddresses")
+  
+  shippingAddressId Int? @unique
+  shippingAddress   Address? @relation("ShippingAddress", fields: [shippingAddressId], references: [id])
+  
+  billingAddressId  Int? @unique
+  billingAddress    Address? @relation("BillingAddress", fields: [billingAddressId], references: [id])
+
+  notifications     Notification[]
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String   // "order_status", "promotion", "system"
+  isRead    Boolean  @default(false)
+  link      String?  // URL to redirect on click
+  createdAt DateTime @default(now())
+}
+
+model Address {
+  id          Int     @id @default(autoincrement())
+  userId      Int
+  user        User    @relation("UserAddresses", fields: [userId], references: [id], onDelete: Cascade)
+  
+  fullName    String
+  street      String
+  city        String
+  postalCode  String
+  country     String  @default("France")
+  phone       String
+  isDefault   Boolean @default(false)
+  createdAt   DateTime @default(now())
+
+  shippingUser User? @relation("ShippingAddress")
+  billingUser  User? @relation("BillingAddress")
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  price       Float
+  salePrice   Float?
+  isOnSale    Boolean  @default(false)
+  imageUrl    String?
+  sku         String?  @unique
+  brand       String?
+  sizes       String?  // JSON array: ["S", "M", "L", "XL"]
+  colors      String?  // JSON array: ["Black", "White", "Red"]
+  stock       Int?
+  tags        String?  // JSON array: ["new", "trending", "sale"]
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orderItems  OrderItem[]
+  reviews     Review[]
+  wishlistItems WishlistItem[]
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  imageUrl    String?
+  parentId    Int?
+  parent      Category?  @relation("SubCategories", fields: [parentId], references: [id])
+  children    Category[] @relation("SubCategories")
+  products    Product[]
+}
+
+model Order {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id])
+  orderNumber     String      @unique
+  status          String      @default("pending") // pending, processing, shipped, delivered, cancelled
+  totalAmount     Float
+  shippingAddress String      // JSON object (legacy)
+  
+  // Customer Snapshot
+  customerEmail   String?
+  customerName    String?
+  customerPhone   String?
+
+  // Structured Shipping Address
+  shippingName       String?
+  shippingStreet     String?
+  shippingCity       String?
+  shippingPostalCode String?
+  shippingCountry    String?
+  shippingPhone      String?
+
+  paymentMethod   String?
+  paymentStatus   String      @default("pending") // pending, paid, failed
+  notes           String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id         Int     @id @default(autoincrement())
+  orderId    Int
+  order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId  Int
+  product    Product @relation(fields: [productId], references: [id])
+  quantity   Int
+  price      Float   // Price at time of purchase
+  size       String?
+  color      String?
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rating    Int      // 1-5 stars
+  title     String?
+  comment   String?
+  isVerified Boolean @default(false) // Verified purchase
+  createdAt DateTime @default(now())
+}
+
+model WishlistItem {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  
+  @@unique([userId, productId])
+}

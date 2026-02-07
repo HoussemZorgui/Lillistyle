@@ -1,0 +1,137 @@
+.container {
+    margin-bottom: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.toggleBtn {
+    padding: 12px 24px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.toggleBtn:hover {
+    border-color: var(--primary);
+}
+
+.clearBtn {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.clearBtn:hover {
+    color: var(--primary-hover);
+}
+
+.filtersPanel {
+    background: #f9f9f9;
+    border-radius: var(--radius-md);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.filterSection {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.filterLabel {
+    font-weight: 600;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.select {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.priceInputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.priceInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+}
+
+.priceInput:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-full);
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.chip:hover {
+    border-color: var(--primary);
+}
+
+.chipActive {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    .filtersPanel {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .toggleBtn,
+    .clearBtn {
+        width: 100%;
+    }
+}

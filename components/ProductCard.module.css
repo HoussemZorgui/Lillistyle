@@ -1,0 +1,115 @@
+.card {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.imageWrapper {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #f0f0f0;
+    position: relative;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+}
+
+/* Cart Icon overlay */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    display: flex;
+    justify-content: center;
+}
+
+.card:hover .overlay {
+    transform: translateY(0);
+}
+
+.addToCartBtn {
+    background: #fff;
+    color: var(--secondary);
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s 0.1s;
+}
+
+.card:hover .addToCartBtn {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.addToCartBtn:hover {
+    background: var(--secondary);
+    color: #fff;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.card:hover .image {
+    transform: scale(1.1);
+}
+
+.placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #eee 0%, #ddd 100%);
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.title {
+    font-size: 1.1rem;
+    margin: 0 0 8px;
+    font-weight: 500;
+    font-family: var(--font-heading);
+}
+
+.title a {
+    color: var(--text-main);
+    text-decoration: none;
+    background-image: linear-gradient(var(--text-main), var(--text-main));
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.3s;
+}
+
+.card:hover .title a {
+    background-size: 100% 1px;
+}
+
+.price {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1rem;
+}

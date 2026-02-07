@@ -1,0 +1,60 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "shop": "Boutique",
+        "women": "Femme",
+        "children": "Enfants",
+        "arrivals": "Nouveautés",
+        "sale": "Soldes",
+        "cart": "Panier"
+    },
+    "hero": {
+        "label": "Nouvelle Collection 2026",
+        "title": "Élégance Intemporelle",
+        "subtitle": "Découvrez une mode premium conçue pour la femme moderne et l'enfant.",
+        "shop_now": "Acheter Maintenant",
+        "children_collection": "Collection Enfants"
+    },
+    "footer": {
+        "description": "Fournir une mode distincte pour l'ère moderne. Nous mélangeons l'élégance intemporelle avec un design contemporain pour créer des pièces qui racontent une histoire.",
+        "shopping": "Shopping",
+        "about": "À propos de nous",
+        "customer_care": "Service client",
+        "contact": "Contactez-nous",
+        "newsletter_title": "Rejoignez le monde de l'élégance",
+        "newsletter_subtitle": "Abonnez-vous pour recevoir les nouveautés et offres exclusives.",
+        "subscribe": "S'abonner",
+        "email_placeholder": "Votre adresse e-mail"
+    },
+    "shop": {
+        "categories": "Catégories",
+        "all_products": "Tous les produits",
+        "no_products": "Aucun produit trouvé dans cette catégorie.",
+        "add_to_cart": "Ajouter au panier",
+        "added": "Ajouté !",
+        "free_shipping": "Gratuit"
+    },
+    "cart": {
+        "title": "Votre Panier",
+        "empty": "Votre panier est vide",
+        "total": "Total",
+        "checkout": "Passer à la caisse",
+        "remove": "Supprimer"
+    },
+    "checkout": {
+        "title": "Paiement",
+        "shipping": "Adresse de livraison",
+        "payment": "Mode de paiement",
+        "order_summary": "Résumé de la commande",
+        "place_order": "Passer commande",
+        "order_success": "Merci pour votre commande !",
+        "order_success_desc": "Votre commande a été passée avec succès et est en cours de traitement. Nous vous avons envoyé un e-mail de confirmation."
+    },
+    "home": {
+        "philosophy_title": "Notre Philosophie",
+        "philosophy_text": "Nous croyons en un style qui transcende les tendances. Nos collections sont conçues avec les matériaux les plus nobles, mêlant design contemporain et sophistication classique.",
+        "collections_title": "Collections Sélectionnées",
+        "no_collections": "Aucune collection disponible pour le moment.",
+        "explore": "Explorer"
+    }
+}

@@ -1,0 +1,156 @@
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-family: var(--font-heading);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+}
+
+.card {
+    background: #fff;
+    padding: 40px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.card h3 {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.field input {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.paymentOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.radioLabel:hover {
+    background: #f9f9f9;
+}
+
+.radioLabel input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary);
+}
+
+.summary {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.summaryCard {
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--primary);
+}
+
+.orderItems {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.orderItem {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+}
+
+.divider {
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+}
+
+.total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .summary {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+}

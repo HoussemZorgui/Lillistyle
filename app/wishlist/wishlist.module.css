@@ -1,0 +1,142 @@
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--secondary);
+}
+
+.empty {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+}
+
+.imageWrapper {
+    position: relative;
+    aspect-ratio: 1;
+    background: #f8f8f8;
+    overflow: hidden;
+    display: block;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.card:hover .image {
+    transform: scale(1.05);
+}
+
+.placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #eee 0%, #ddd 100%);
+}
+
+.saleBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--error);
+    color: white;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.details {
+    padding: 20px;
+}
+
+.category {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.productTitle {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: var(--text-main);
+    transition: color 0.2s;
+}
+
+.productTitle:hover {
+    color: var(--primary);
+}
+
+.priceSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 1.3rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.originalPrice {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.removeBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: var(--error);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    justify-content: center;
+}
+
+.removeBtn:hover {
+    background: #ffebee;
+    border-color: var(--error);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
