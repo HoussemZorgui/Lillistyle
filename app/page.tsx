@@ -1,14 +1,23 @@
 'use client';
 
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import styles from './page.module.css';
 import AnimatedSection from '@/components/AnimatedSection';
 import { useI18n } from '@/components/I18nContext';
 import { useEffect, useState } from 'react';
 
+const HERO_IMAGES = [
+  '/uploads/slide1.png',
+  '/uploads/slide2.png',
+  '/uploads/slide3.png',
+  '/uploads/slide4.png'
+];
+
 export default function Home() {
   const { t } = useI18n();
   const [categories, setCategories] = useState<any[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     fetch('/api/categories')
@@ -16,10 +25,28 @@ export default function Home() {
       .then(data => setCategories(data.slice(0, 3)));
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className={styles.main}>
       {/* Hero Section */}
       <section className={styles.hero}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            className={styles.heroBackground}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            style={{ backgroundImage: `url(${HERO_IMAGES[currentSlide]})` }}
+          />
+        </AnimatePresence>
         <div className={styles.heroOverlay}>
           <AnimatedSection className={styles.heroContent} delay={0.5}>
             <span className={styles.label}>{t('hero.label')}</span>
