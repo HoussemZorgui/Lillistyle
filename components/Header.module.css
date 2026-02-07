@@ -43,15 +43,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 180px;
-    width: auto;
+    height: 100%;
     z-index: 10;
 }
 
 .logo img {
-    height: 90px !important;
-    /* Larger, elegant logo */
+    height: 100px !important;
+    width: auto;
     object-fit: contain;
+    display: block;
 }
 
 /* Left Section: Mobile Menu & Desktop Nav */
