@@ -54,7 +54,6 @@ export default function Home() {
             <p className={styles.subtitle}>{t('hero.subtitle')}</p>
             <div className={styles.heroButtons}>
               <Link href="/shop" className="btn btn-primary">{t('hero.shop_now')}</Link>
-              <Link href="/shop?category=children" className="btn btn-outline">{t('hero.children_collection')}</Link>
             </div>
           </AnimatedSection>
         </div>
