@@ -7,13 +7,15 @@ export interface CartItem {
     price: number;
     quantity: number;
     imageUrl: string | null;
+    selectedSize?: string;
+    selectedColor?: string;
 }
 
 interface CartContextType {
     cart: CartItem[];
-    addToCart: (product: { id: number; title: string; price: number; imageUrl: string | null }) => void;
-    removeFromCart: (id: number) => void;
-    updateQuantity: (id: number, quantity: number) => void;
+    addToCart: (product: { id: number; title: string; price: number; imageUrl: string | null; selectedSize?: string; selectedColor?: string }) => void;
+    removeFromCart: (id: number, size?: string, color?: string) => void;
+    updateQuantity: (id: number, quantity: number, size?: string, color?: string) => void;
     clearCart: () => void;
     cartTotal: number;
 }
@@ -38,26 +40,40 @@ export function CartProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('lillistyle_cart', JSON.stringify(cart));
     }, [cart]);
 
-    const addToCart = (product: { id: number; title: string; price: number; imageUrl: string | null }) => {
+    const addToCart = (product: { id: number; title: string; price: number; imageUrl: string | null; selectedSize?: string; selectedColor?: string }) => {
         setCart((prev) => {
-            const existing = prev.find((item) => item.id === product.id);
+            const existing = prev.find((item) =>
+                item.id === product.id &&
+                item.selectedSize === product.selectedSize &&
+                item.selectedColor === product.selectedColor
+            );
             if (existing) {
                 return prev.map((item) =>
-                    item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+                    (item.id === product.id &&
+                        item.selectedSize === product.selectedSize &&
+                        item.selectedColor === product.selectedColor)
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
                 );
             }
             return [...prev, { ...product, quantity: 1 }];
         });
     };
 
-    const removeFromCart = (id: number) => {
-        setCart((prev) => prev.filter((item) => item.id !== id));
+    const removeFromCart = (id: number, size?: string, color?: string) => {
+        setCart((prev) => prev.filter((item) =>
+            !(item.id === id && item.selectedSize === size && item.selectedColor === color)
+        ));
     };
 
-    const updateQuantity = (id: number, quantity: number) => {
+    const updateQuantity = (id: number, quantity: number, size?: string, color?: string) => {
         if (quantity < 1) return;
         setCart((prev) =>
-            prev.map((item) => item.id === id ? { ...item, quantity } : item)
+            prev.map((item) =>
+                (item.id === id && item.selectedSize === size && item.selectedColor === color)
+                    ? { ...item, quantity }
+                    : item
+            )
         );
     };
 

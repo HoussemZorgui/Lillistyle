@@ -64,6 +64,14 @@
     font-size: 0.9rem;
 }
 
+.itemVariant {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 .quantity {
     display: flex;
     align-items: center;

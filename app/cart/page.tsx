@@ -32,8 +32,8 @@ export default function CartPage() {
                 <h1 className={styles.title}>{t('cart.title')}</h1>
                 <div className={styles.layout}>
                     <div className={styles.items}>
-                        {cart.map((item) => (
-                            <div key={item.id} className={styles.cartItem}>
+                        {cart.map((item, index) => (
+                            <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}-${index}`} className={styles.cartItem}>
                                 <div className={styles.itemImage}>
                                     {item.imageUrl ? (
                                         <img src={item.imageUrl} alt={item.title} />
@@ -43,18 +43,25 @@ export default function CartPage() {
                                 </div>
                                 <div className={styles.itemInfo}>
                                     <h3>{item.title}</h3>
+                                    {(item.selectedSize || item.selectedColor) && (
+                                        <p className={styles.itemVariant}>
+                                            {item.selectedSize && <span>Taille: {item.selectedSize}</span>}
+                                            {item.selectedSize && item.selectedColor && <span style={{ margin: '0 5px' }}>|</span>}
+                                            {item.selectedColor && <span>Couleur: {item.selectedColor}</span>}
+                                        </p>
+                                    )}
                                     <p className={styles.itemPrice}>{item.price.toFixed(2)} DT</p>
                                 </div>
                                 <div className={styles.quantity}>
                                     <button
-                                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                        onClick={() => updateQuantity(item.id, item.quantity - 1, item.selectedSize, item.selectedColor)}
                                         className={styles.qtyBtn}
                                     >
                                         <Minus size={16} />
                                     </button>
                                     <span className={styles.qtyValue}>{item.quantity}</span>
                                     <button
-                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                        onClick={() => updateQuantity(item.id, item.quantity + 1, item.selectedSize, item.selectedColor)}
                                         className={styles.qtyBtn}
                                     >
                                         <Plus size={16} />
@@ -64,7 +71,7 @@ export default function CartPage() {
                                     {(item.price * item.quantity).toFixed(2)} DT
                                 </div>
                                 <button
-                                    onClick={() => removeFromCart(item.id)}
+                                    onClick={() => removeFromCart(item.id, item.selectedSize, item.selectedColor)}
                                     className={styles.removeBtn}
                                 >
                                     <Trash2 size={18} />
